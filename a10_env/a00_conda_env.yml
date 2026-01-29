@@ -1,0 +1,13 @@
+name: i84
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.14.2
+  - numpy
+  - pandas
+  - jupyter
+  - ipython
+  - pip
+  - pip:
+      - i7_hot_reload
