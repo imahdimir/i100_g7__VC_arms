@@ -5,11 +5,14 @@ class Directories:
     project_root: Path = Path('/sharedata/camm/c_projects/i100_g7__VC_arms')
     pitchbook_full_data = Path('/sharedata/camm/b000_PitchBook_Full_Data')
 
+    b15_data_input = project_root / 'b15_data_input'
     d10_data_manual = project_root / 'd10_data_manual'
     f10_data_interim = project_root / 'f10_data_interim'
     g10_data_processed = project_root / 'g10_data_processed'
     g20_results_tables = project_root / 'g20_results_tables'
+    g22_result_table_pics = project_root / 'g22_result_table_pics'
     g30_results_plots = project_root / 'g30_results_plots'
+    g32_results_plot_with_tables = project_root / 'g32_results_plot_with_tables'
 
 
 class FilePaths:
@@ -40,8 +43,11 @@ class FilePaths:
 
     # sp060
     di_sp060_01__all_hospitals_and_VC_affiliations__preliminary__xl = dyr.f10_data_interim / 'di_sp060_01__all_hospitals_and_VC_affiliations__preliminary.xlsx'
+    di_sp060_03__xl = dyr.f10_data_interim / 'di_sp060_03.xlsx'
     di_sp060_05__all_hospitals_and_VC_affiliations__xl = dyr.f10_data_interim / 'di_sp060_05__all_hospitals_and_VC_affiliations.xlsx'
     dp_sp060_10__all_hospitals_and_VC_affiliations__final__xl = dyr.g10_data_processed / 'dp_sp060_10__all_hospitals_and_VC_affiliations__final.xlsx'
+    rt_sp060_15 = dyr.g20_results_tables / 'rt_sp060_15__unique_vc_hospital_and_pair_types_count.xlsx'
+    sp060_20 = dyr.g20_results_tables / 'sp060_20.svg'
 
     # sp070
     di_sp070_05__vc_related_deal_ids__xl = dyr.f10_data_interim / 'di_sp070_05__vc_related_deal_ids.xlsx'
@@ -72,6 +78,22 @@ class FilePaths:
     rp_sp090_50__invested_industries__fmt1__pdf = dyr.g30_results_plots / f'rp_sp090_50__invested_industries__fmt1.pdf'
     rp_sp090_55__invested_industries__fmt2__svg = dyr.g30_results_plots / f'rp_sp090_55__invested_industries__fmt2.svg'
 
+    # sp100
+    sp100_20 = dyr.f10_data_interim / 'sp100_20.xlsx'
+    sp100_25__t1 = dyr.g22_result_table_pics / 'sp100_10__t1.svg'
+    sp100_30__t2 = dyr.g22_result_table_pics / 'sp100_30__t2.svg'
+    sp100_32 = dyr.g32_results_plot_with_tables / 'sp100_32.svg'
+    sp100_35 = dyr.g32_results_plot_with_tables / 'sp100_35.svg'
+    sp100_40 = dyr.g32_results_plot_with_tables / 'sp100_40.svg'
+    sp100_45_df11 = dyr.f10_data_interim / 'sp100_45.xlsx'
+    sp100_50 = dyr.g32_results_plot_with_tables / 'sp100_50.svg'
+    sp100_60 = dyr.g32_results_plot_with_tables / 'sp100_60.svg'
+    sp100_65 = dyr.g32_results_plot_with_tables / 'sp100_65.svg'
+    sp100_70 = dyr.g10_data_processed / 'sp100_70.xlsx'
+
+    sp110_pb_ss = dyr.b15_data_input / 'pb_ss_investor_match.xlsx'
+    sp100_stepstone_gps = dyr.b15_data_input / 'Stepstone_GPs.csv'
+
 
 class Constants:
     sub = 'Subsidiary'
@@ -79,8 +101,7 @@ class Constants:
     sis = 'Sister'
     hospital = 'hospital'
     vc = 'vc'
-
-    # sp040
+    not_vc_nor_hospital = 'not_vc_nor_hospital'
     com = 'com'
     com_dot = 'Company.'
     inv_dot = 'Investor.'
@@ -91,18 +112,26 @@ class Variables:
     """ Variables for Observations or columns in the data """
     const = Constants()
 
+    # PitchBook data variables/columns
     fund_id = 'FundID'
     investor = 'Investor'
     fund_no = 'FundNo'
     investor_name = 'InvestorName'
     investor_fund_id = 'InvestorFundID'
     investor_fund_name = 'InvestorFundName'
-
+    universe__pb = 'Universe'
+    primary_industry_sec__pb = 'PrimaryIndustrySector'
+    primary_industry_gp__pb = 'PrimaryIndustryGroup'
     industry = 'Industry'
+    industry__pb = 'Industry'
     entity_id = 'EntityID'
+    entity_id__pb = 'EntityID'
     affiliate_id = 'AffiliateID'
+    affiliate_id__pb = 'AffiliateID'
     aff_type = 'AffiliateType'
+    affiliate_type__pb = 'AffiliateType'
     comp_id = 'CompanyID'
+    comp_id__pb = 'CompanyID'
     investor_id = 'InvestorID'
     deal_id = 'DealID'
     deal_status = 'DealStatus'
@@ -117,7 +146,6 @@ class Variables:
     deal_size = 'DealSize'
     deal_year = 'deal_year'
 
-    # sp040
     name_from_media = 'NameFromMedia'  # the hospital name from that media list
     pb_url = 'PBURL'
     pb_id = 'PBID'  # Pitchbook ID
@@ -138,11 +166,25 @@ class Variables:
 
     parent_com_id = 'ParentCompanyID'
 
+    pair_parent_count = 'pair_parent_count'
+    pair_uniq_parent_count = 'pair_uniq_parent_count'
+    both_sisters_have_same_parent = 'both_sisters_have_same_parent'
+    aff_type_par = 'affiliate_type_par'
+    child_vc_id = 'child_vc_id'
+    parent_hospital_id = 'parent_hospital_id'
+    sister_or_parsub = 'sister_or_parsub'
+    parent_hospital_industry = 'parent_hospital_industry'
+    child_vc_industry = 'child_vc_industry'
+    parent_hospital_universe = 'parent_hospital_Universe'
+
 
 dyr = Directories()
 file = FilePaths()
+fi = file
 const = Constants()
+c = const
 var = Variables()
+v = var
 
 
 def normalize_instance_paths_from_class(cls_instance):
@@ -174,92 +216,3 @@ dyr_str = normalize_instance_paths_from_class(Directories())
 file_str = normalize_instance_paths_from_class(FilePaths())
 const_str = normalize_instance_paths_from_class(Constants())
 var_str = normalize_instance_paths_from_class(Variables())
-
-# # !/usr/bin/env python3
-# """
-# Script to display Jupyter kernel name and conda environment information
-# """
-#
-# import sys
-# import os
-# import json
-#
-#
-# def get_jupyter_kernel_name():
-#     """Get the current Jupyter kernel name"""
-#     try:
-#         # Method 1: Check if running in IPython/Jupyter
-#         from IPython import get_ipython
-#         ipython = get_ipython()
-#
-#         if ipython is not None:
-#             # Try to get connection file
-#             connection_file = ipython.config.get('IPKernelApp', {}).get('connection_file', '')
-#             if connection_file:
-#                 print(f"Jupyter Connection File: {connection_file}")
-#
-#             # Get kernel info from connection file
-#             if connection_file and os.path.exists(connection_file):
-#                 with open(connection_file, 'r') as f:
-#                     kernel_info = json.load(f)
-#                     print(f"Kernel Info: {kernel_info.get('kernel_name', 'N/A')}")
-#         else:
-#             print("Not running in Jupyter/IPython environment")
-#
-#     except ImportError:
-#         print("IPython not available - not running in Jupyter")
-#     except Exception as e:
-#         print(f"Could not determine Jupyter kernel: {e}")
-#
-#
-# def get_conda_environment():
-#     """Get conda environment name and path"""
-#     print("\n--- Conda Environment Info ---")
-#
-#     # Method 1: CONDA_DEFAULT_ENV environment variable
-#     conda_env = os.environ.get('CONDA_DEFAULT_ENV')
-#     if conda_env:
-#         print(f"Conda Environment Name: {conda_env}")
-#     else:
-#         print("CONDA_DEFAULT_ENV not set (may not be in conda environment)")
-#
-#     # Method 2: CONDA_PREFIX (conda environment path)
-#     conda_prefix = os.environ.get('CONDA_PREFIX')
-#     if conda_prefix:
-#         print(f"Conda Environment Path: {conda_prefix}")
-#     else:
-#         print("CONDA_PREFIX not set")
-#
-#     # Method 3: Check sys.prefix (Python installation path)
-#     print(f"Python Prefix (sys.prefix): {sys.prefix}")
-#
-#     # Check if we're in base environment
-#     if conda_env == 'base':
-#         print("Running in conda base environment")
-#     elif conda_env:
-#         print(f"Running in conda environment: {conda_env}")
-#     else:
-#         print("Not running in a conda environment (or conda not activated)")
-#
-#
-# def get_python_executable():
-#     """Get Python executable path"""
-#     print("\n--- Python Executable Info ---")
-#     print(f"Python Executable: {sys.executable}")
-#     print(f"Python Version: {sys.version}")
-#     print(f"Python Path: {sys.prefix}")
-#
-#
-# def main():
-#     print("=" * 60)
-#     print("JUPYTER KERNEL AND CONDA ENVIRONMENT INFORMATION")
-#     print("=" * 60)
-#
-#     get_jupyter_kernel_name()
-#     get_conda_environment()
-#     get_python_executable()
-#
-#     print("\n--- All Environment Variables (conda-related) ---")
-#     for key, value in os.environ.items():
-#         if 'CONDA' in key or 'JUPYTER' in key:
-#             print(f"{key}: {value}")
